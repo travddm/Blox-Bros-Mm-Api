@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Blox-Bros-Mm-Api</name>
+    </assembly>
+    <members>
+        <member name="T:Blox_Bros_Mm_Api.Controllers.ExampleController">
+            <summary>
+            Example endpoints
+            </summary>
+        </member>
+        <member name="M:Blox_Bros_Mm_Api.Controllers.ExampleController.Get">
+            <summary>
+            Gets an array of example values
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Blox_Bros_Mm_Api.Controllers.ExampleController.Get(System.Int32)">
+            <summary>
+            Gets a specific example value by id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Blox_Bros_Mm_Api.Controllers.ServersController">
+            <summary>
+            Endpoints for viewing and modifying server information
+            </summary>
+        </member>
+        <member name="M:Blox_Bros_Mm_Api.Controllers.ServersController.GetServerGuidList">
+            <summary>
+            Gets an array of all server guids
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Blox_Bros_Mm_Api.Controllers.ServersController.GetServer(System.String)">
+            <summary>
+            Gets information about a specific server from the server list
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Blox_Bros_Mm_Api.Controllers.ServersController.PostServer(System.String,Newtonsoft.Json.Linq.JObject)">
+            <summary>
+            Posts information about a specific server to the server list
+            </summary>
+            <param name="guid"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Blox_Bros_Mm_Api.Controllers.ServersController.DeleteServer(System.String)">
+            <summary>
+            Deletes a server from the server list
+            </summary>
+            <param name="guid"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Blox_Bros_Mm_Api.Program">
+            <summary>
+            The main program class
+            </summary>
+        </member>
+        <member name="M:Blox_Bros_Mm_Api.Program.Main(System.String[])">
+            <summary>
+            Main program method; application entry point
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Blox_Bros_Mm_Api.Program.CreateWebHostBuilder(System.String[])">
+            <summary>
+            Creates and returns the default <see cref="T:Microsoft.AspNetCore.Hosting.IWebHostBuilder"/>
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Blox_Bros_Mm_Api.Server">
+            <summary>
+            Represents a server
+            </summary>
+        </member>
+        <member name="F:Blox_Bros_Mm_Api.Server.Servers">
+            <summary>
+            List of all <see cref="T:Blox_Bros_Mm_Api.Server"/> objects
+            </summary>
+        </member>
+        <member name="P:Blox_Bros_Mm_Api.Server.Guid">
+            <summary>
+            The server's Guid
+            </summary>
+        </member>
+        <member name="P:Blox_Bros_Mm_Api.Server.Players">
+            <summary>
+            The number of players in the server
+            </summary>
+        </member>
+        <member name="P:Blox_Bros_Mm_Api.Server.Map">
+            <summary>
+            The server's current map name
+            </summary>
+        </member>
+        <member name="M:Blox_Bros_Mm_Api.Server.#ctor(System.String,System.Int32,System.String)">
+            <summary>
+            Instantiates a new <see cref="T:Blox_Bros_Mm_Api.Server"/> with the given parameters
+            </summary>
+            <param name="pGuid">The server's Guid</param>
+            <param name="pPlayers">The number of players in the server</param>
+            <param name="pMap">The server's current map name</param>
+        </member>
+        <member name="M:Blox_Bros_Mm_Api.Server.Delete">
+            <summary>
+            Disposes the <see cref="T:Blox_Bros_Mm_Api.Server"/> and removes it from the <see cref="T:Blox_Bros_Mm_Api.Server"/> list
+            </summary>
+        </member>
+        <member name="T:Blox_Bros_Mm_Api.Startup">
+            <summary>
+            Default startup type
+            </summary>
+        </member>
+        <member name="M:Blox_Bros_Mm_Api.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Instantiates a new <see cref="T:Blox_Bros_Mm_Api.Startup"/> object
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:Blox_Bros_Mm_Api.Startup.Configuration">
+            <summary>
+            Startup configuration
+            </summary>
+        </member>
+        <member name="M:Blox_Bros_Mm_Api.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Called by .NET Core runtime; adds services to the container.
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:Blox_Bros_Mm_Api.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            Called by .NET Core runtime; configures the HTTP request pipeline.
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+        </member>
+    </members>
+</doc>

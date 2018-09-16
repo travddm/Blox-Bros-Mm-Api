@@ -9,25 +9,49 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Blox_Bros_Mm_Api
 {
+    /// <summary>
+    /// Default startup type
+    /// </summary>
     public class Startup
     {
+        /// <summary>
+        /// Instantiates a new <see cref="Startup"/> object
+        /// </summary>
+        /// <param name="configuration"></param>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
+        /// <summary>
+        /// Startup configuration
+        /// </summary>
         public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
+        
+        /// <summary>
+        /// Called by .NET Core runtime; adds services to the container.
+        /// </summary>
+        /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            
+            services.AddSwaggerGen(c =>
+             {
+                 c.SwaggerDoc("v1", new Info { Title = "Blox Bros Matchmaking API", Version = "v1" });
+                 c.IncludeXmlComments(string.Format(@"{0}\Blox-Bros-Mm-Api.xml", AppDomain.CurrentDomain.BaseDirectory));
+             });
         }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        
+        /// <summary>
+        /// Called by .NET Core runtime; configures the HTTP request pipeline.
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="env"></param>
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -36,6 +60,14 @@ namespace Blox_Bros_Mm_Api
             }
 
             app.UseMvc();
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.RoutePrefix = "docs";
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Blox Bros Matchmaking API");
+            });
         }
     }
 }

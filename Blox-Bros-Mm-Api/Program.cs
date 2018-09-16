@@ -10,13 +10,25 @@ using Microsoft.Extensions.Logging;
 
 namespace Blox_Bros_Mm_Api
 {
+    /// <summary>
+    /// The main program class
+    /// </summary>
     public class Program
     {
+        /// <summary>
+        /// Main program method; application entry point
+        /// </summary>
+        /// <param name="args"></param>
         public static void Main(string[] args)
         {
             CreateWebHostBuilder(args).Build().Run();
         }
 
+        /// <summary>
+        /// Creates and returns the default <see cref="IWebHostBuilder"/>
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>();
