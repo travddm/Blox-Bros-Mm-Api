@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Blox_Bros_Mm_Api.Attributes;
+using Blox_Bros_Mm_Api.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -72,8 +73,18 @@ namespace Blox_Bros_Mm_Api
                 c.RoutePrefix = "docs";
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Blox Bros Matchmaking API");
             });
-            
-            ApiAuthorize.SetGlobalApiKey(Configuration["GlobalApiKey"]);
+
+            try
+            {
+                ApiAuthorize.SetGlobalApiKey(Configuration["GlobalApiKey"]);
+                Player.MinMatchSize = int.Parse(Configuration["MinMatchSize"]);
+                Player.MaxMatchSize = int.Parse(Configuration["MaxMatchSize"]);
+                Player.MaxQueueTime = int.Parse(Configuration["MaxQueueTime"]);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("appsettings.json file does not contain required key-value pair", e);
+            }
         }
     }
 }
