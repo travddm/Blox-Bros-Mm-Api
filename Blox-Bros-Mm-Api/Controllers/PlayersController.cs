@@ -27,7 +27,14 @@ namespace Blox_Bros_Mm_Api.Controllers
         [ProducesResponseType(200)]
         public IActionResult GetPlayerUserIdList()
         {
-            return BadRequest(new NotImplementedException());
+            List<long> userIds = new List<long>();
+
+            foreach (var player in Player.Players)
+            {
+                userIds.Add(player.UserId);
+            }
+
+            return Ok(userIds);
         }
         
         /// <summary>
@@ -37,9 +44,14 @@ namespace Blox_Bros_Mm_Api.Controllers
         [HttpGet("{userId}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
-        public IActionResult GetPlayer()
+        public IActionResult GetPlayer(long userId)
         {
-            return BadRequest(new NotImplementedException());
+            Player target = Player.Players.Find(p => p.UserId == userId);
+
+            if (target == null)
+                return NotFound();
+
+            return Ok(target);
         }
 
         /// <summary>
@@ -50,9 +62,29 @@ namespace Blox_Bros_Mm_Api.Controllers
         [HttpPost("{userId}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public IActionResult PostPlayer()
+        public IActionResult PostPlayer(long userId, [FromBody] JObject data)
         {
-            return BadRequest(new NotImplementedException());
+            Player target = Player.Players.Find(p => p.UserId == userId);
+            
+            try
+            {
+                // Parse user data
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+
+            if (target == null)
+            {
+                target = new Player(userId);
+            }
+            else
+            {
+                // Replace user data
+            }
+
+            return Ok();
         }
 
         /// <summary>
@@ -63,9 +95,16 @@ namespace Blox_Bros_Mm_Api.Controllers
         [HttpDelete("{userId}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
-        public IActionResult DeletePlayer()
+        public IActionResult DeletePlayer(long userId)
         {
-            return BadRequest(new NotImplementedException());
+            Player target = Player.Players.Find(p => p.UserId == userId);
+
+            if (target == null)
+                return NotFound();
+            else
+                target.Delete();
+
+            return Ok();
         }
 
         #endregion
