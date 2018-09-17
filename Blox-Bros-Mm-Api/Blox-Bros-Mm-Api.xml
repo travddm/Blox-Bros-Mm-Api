@@ -4,6 +4,37 @@
         <name>Blox-Bros-Mm-Api</name>
     </assembly>
     <members>
+        <member name="T:Blox_Bros_Mm_Api.Attributes.ApiAuthorize">
+            <summary>
+            Requires the executing <see cref="T:System.Action"/>'s <see cref="T:Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext"/>.HttpContext.Request
+            headers to include an X-Api-Key that matches the appsettings.json's "GlobalApiKey" property. Otherwise, it aborts the request and gives the context a <see cref="T:Microsoft.AspNetCore.Mvc.UnauthorizedResult"/>.
+            </summary>
+        </member>
+        <member name="M:Blox_Bros_Mm_Api.Attributes.ApiAuthorize.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            Custom <see cref="M:Microsoft.AspNetCore.Mvc.Filters.ActionFilterAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)"/> implementation
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:Blox_Bros_Mm_Api.Attributes.ApiAuthorize.SetGlobalApiKey(System.String)">
+            <summary>
+            Sets the <see cref="F:Blox_Bros_Mm_Api.Attributes.ApiAuthorize.GlobalApiKey"/> for Api Authorization
+            </summary>
+            <param name="pGlobalApiKey"></param>
+        </member>
+        <member name="T:Blox_Bros_Mm_Api.Attributes.ApiAuthorize.AddSwaggerParameter">
+            <summary>
+            <see cref="T:Swashbuckle.AspNetCore.SwaggerGen.IOperationFilter"/> implementation used to add the X-Api-Key header parameter to any
+            requests that are decorated with the <see cref="T:Blox_Bros_Mm_Api.Attributes.ApiAuthorize"/> attribute.
+            </summary>
+        </member>
+        <member name="M:Blox_Bros_Mm_Api.Attributes.ApiAuthorize.AddSwaggerParameter.Apply(Swashbuckle.AspNetCore.Swagger.Operation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
+            <summary>
+            Custom <see cref="M:Swashbuckle.AspNetCore.SwaggerGen.IOperationFilter.Apply(Swashbuckle.AspNetCore.Swagger.Operation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)"/> implementation.
+            </summary>
+            <param name="operation"></param>
+            <param name="context"></param>
+        </member>
         <member name="T:Blox_Bros_Mm_Api.Controllers.ExampleController">
             <summary>
             Example endpoints

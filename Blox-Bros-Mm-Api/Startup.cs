@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Blox_Bros_Mm_Api.Attributes;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -44,6 +45,9 @@ namespace Blox_Bros_Mm_Api
              {
                  c.SwaggerDoc("v1", new Info { Title = "Blox Bros Matchmaking API", Version = "v1" });
                  c.IncludeXmlComments(string.Format(@"{0}\Blox-Bros-Mm-Api.xml", AppDomain.CurrentDomain.BaseDirectory));
+
+                 // Add X-Api-Key header to operation parameters
+                 c.OperationFilter<ApiAuthorize.AddSwaggerParameter>();
              });
         }
         
@@ -68,6 +72,8 @@ namespace Blox_Bros_Mm_Api
                 c.RoutePrefix = "docs";
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Blox Bros Matchmaking API");
             });
+            
+            ApiAuthorize.SetGlobalApiKey(Configuration["GlobalApiKey"]);
         }
     }
 }

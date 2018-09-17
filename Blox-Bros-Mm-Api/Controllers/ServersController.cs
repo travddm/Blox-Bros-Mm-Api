@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
+using Blox_Bros_Mm_Api.Attributes;
 
 namespace Blox_Bros_Mm_Api.Controllers
 {
@@ -57,6 +59,7 @@ namespace Blox_Bros_Mm_Api.Controllers
         /// <param name="guid"></param>
         /// <param name="data"></param>
         /// <returns></returns>
+        [ApiAuthorize]
         [HttpPost("{guid}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
@@ -94,6 +97,7 @@ namespace Blox_Bros_Mm_Api.Controllers
         /// </summary>
         /// <param name="guid"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpDelete("{guid}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
