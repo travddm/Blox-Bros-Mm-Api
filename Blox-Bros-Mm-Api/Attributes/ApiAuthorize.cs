@@ -76,15 +76,27 @@ namespace Blox_Bros_Mm_Api.Attributes
                 // Check if the method is decorated with any ApiAuthorize attributes
                 if (context.MethodInfo.GetCustomAttributes(typeof(ApiAuthorize), false).Any())
                 {
+                    // Add empty parameter list if not present
                     if (operation.Parameters == null)
                         operation.Parameters = new List<IParameter>();
 
+                    // Add X-Api-Key header parameter
                     operation.Parameters.Add(new NonBodyParameter
                     {
                         Name = "X-Api-Key",
                         In = "header",
                         Type = "string",
                         Required = true
+                    });
+
+                    // Add empty response dictionary if not present
+                    if (operation.Responses == null)
+                        operation.Responses = new Dictionary<string, Response>();
+
+                    // Add unauthorized response
+                    operation.Responses.Add("401", new Response
+                    {
+                        Description = "Unauthorized"
                     });
                 }
             }
