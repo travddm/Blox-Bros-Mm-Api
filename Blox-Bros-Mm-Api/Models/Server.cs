@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Blox_Bros_Mm_Api
+namespace Blox_Bros_Mm_Api.Models
 {
     /// <summary>
     /// Represents a server

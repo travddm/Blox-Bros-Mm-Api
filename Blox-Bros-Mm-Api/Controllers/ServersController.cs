@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 using Blox_Bros_Mm_Api.Attributes;
+using Blox_Bros_Mm_Api.Models;
 
 namespace Blox_Bros_Mm_Api.Controllers
 {
