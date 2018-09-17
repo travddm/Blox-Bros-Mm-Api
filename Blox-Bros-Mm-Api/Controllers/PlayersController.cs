@@ -46,7 +46,7 @@ namespace Blox_Bros_Mm_Api.Controllers
         /// Posts information about a specific player to the player queue, and starts the queue if it's not already started
         /// </summary>
         /// <returns></returns>
-        [Authorize]
+        [ApiAuthorize]
         [HttpPost("{userId}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
@@ -59,7 +59,7 @@ namespace Blox_Bros_Mm_Api.Controllers
         /// Deletes a player from the player queue
         /// </summary>
         /// <returns></returns>
-        [Authorize]
+        [ApiAuthorize]
         [HttpDelete("{userId}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]

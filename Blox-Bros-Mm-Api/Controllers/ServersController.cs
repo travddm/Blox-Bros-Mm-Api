@@ -98,7 +98,7 @@ namespace Blox_Bros_Mm_Api.Controllers
         /// </summary>
         /// <param name="guid"></param>
         /// <returns></returns>
-        [Authorize]
+        [ApiAuthorize]
         [HttpDelete("{guid}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
