@@ -68,11 +68,15 @@ namespace Blox_Bros_Mm_Api.Models
         /// <returns></returns>
         public async Task<Player> FindMatch()
         {
-            var elapsedTime = 0;
+            System.Diagnostics.Debug.WriteLine("Searching for match for " + UserId);
+
+            var startTime = DateTime.Now;
 
             // Keep searching every second until Server is not null or Player is no longer queued
-            while (this.Server != null && Players.Contains(this))
+            while (this.Server == null && Players.Contains(this))
             {
+                double elapsedTime = (DateTime.Now - startTime).TotalSeconds;
+                
                 // Lock threads on Player list, making this method thread-safe
                 lock(Players)
                 {
@@ -89,21 +93,22 @@ namespace Blox_Bros_Mm_Api.Models
                             break;
                     }
 
-                    if (possibleQueue.Count == MaxMatchSize || (elapsedTime > MaxQueueTime && possibleQueue.Count > MinMatchSize))
+                    possibleQueue.Add(this);
+
+                    if (possibleQueue.Count == MaxMatchSize || (elapsedTime > MaxQueueTime && possibleQueue.Count >= MinMatchSize))
                     {
                         var reservedServer = new Server();
 
                         foreach (var player in possibleQueue)
                             player.Server = reservedServer;
-
-                        this.Server = reservedServer;
                     }
                 }
 
                 await Task.Delay(1000);
-
-                elapsedTime++;
             }
+
+            if (this.Server != null)
+                System.Diagnostics.Debug.WriteLine("Found match for " + UserId + " in " + (int)(DateTime.Now - startTime).TotalSeconds + " seconds");
 
             return this;
         }
