@@ -78,6 +78,9 @@ namespace Blox_Bros_Mm_Api.Controllers
             if (target == null)
             {
                 target = new Player(userId);
+
+                // Start searching for a match in the background
+                target.FindMatch();
             }
             else
             {

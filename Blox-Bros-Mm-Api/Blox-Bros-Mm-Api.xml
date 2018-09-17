@@ -64,19 +64,19 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Blox_Bros_Mm_Api.Controllers.PlayersController.GetPlayer">
+        <member name="M:Blox_Bros_Mm_Api.Controllers.PlayersController.GetPlayer(System.Int64)">
             <summary>
             Gets information about a specific player from the player queue
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Blox_Bros_Mm_Api.Controllers.PlayersController.PostPlayer">
+        <member name="M:Blox_Bros_Mm_Api.Controllers.PlayersController.PostPlayer(System.Int64,Newtonsoft.Json.Linq.JObject)">
             <summary>
             Posts information about a specific player to the player queue, and starts the queue if it's not already started
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Blox_Bros_Mm_Api.Controllers.PlayersController.DeletePlayer">
+        <member name="M:Blox_Bros_Mm_Api.Controllers.PlayersController.DeletePlayer(System.Int64)">
             <summary>
             Deletes a player from the player queue
             </summary>
@@ -114,6 +114,58 @@
             <param name="guid"></param>
             <returns></returns>
         </member>
+        <member name="T:Blox_Bros_Mm_Api.Models.Player">
+            <summary>
+            Represents a queued player
+            </summary>
+        </member>
+        <member name="P:Blox_Bros_Mm_Api.Models.Player.MinMatchSize">
+            <summary>
+            The minimum number of players that can be matched together
+            </summary>
+        </member>
+        <member name="P:Blox_Bros_Mm_Api.Models.Player.MaxMatchSize">
+            <summary>
+            The maximum number of players that can be matched together
+            </summary>
+        </member>
+        <member name="P:Blox_Bros_Mm_Api.Models.Player.MaxQueueTime">
+            <summary>
+            The maximum number of seconds a player can be queued before the queue will prioritize the queue
+            </summary>
+        </member>
+        <member name="F:Blox_Bros_Mm_Api.Models.Player.Players">
+            <summary>
+            List of all <see cref="T:Blox_Bros_Mm_Api.Models.Player"/> objects
+            </summary>
+        </member>
+        <member name="P:Blox_Bros_Mm_Api.Models.Player.UserId">
+            <summary>
+            The player's userId
+            </summary>
+        </member>
+        <member name="P:Blox_Bros_Mm_Api.Models.Player.Server">
+            <summary>
+            The player's match <see cref="P:Blox_Bros_Mm_Api.Models.Player.Server"/>, set when a match is found
+            </summary>
+        </member>
+        <member name="M:Blox_Bros_Mm_Api.Models.Player.#ctor(System.Int64)">
+            <summary>
+            Instantiates a new <see cref="T:Blox_Bros_Mm_Api.Models.Player"/> with the given parameters
+            </summary>
+            <param name="pUserId"></param>
+        </member>
+        <member name="M:Blox_Bros_Mm_Api.Models.Player.FindMatch">
+            <summary>
+            Asynchronously searches for a match for the <see cref="T:Blox_Bros_Mm_Api.Models.Player"/>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Blox_Bros_Mm_Api.Models.Player.Delete">
+            <summary>
+            Disposes the <see cref="T:Blox_Bros_Mm_Api.Models.Player"/> and removes it from the <see cref="T:Blox_Bros_Mm_Api.Models.Player"/> list
+            </summary>
+        </member>
         <member name="T:Blox_Bros_Mm_Api.Models.Server">
             <summary>
             Represents a server
@@ -139,6 +191,11 @@
             The server's current map name
             </summary>
         </member>
+        <member name="M:Blox_Bros_Mm_Api.Models.Server.#ctor">
+            <summary>
+            Default constructor; instantiates a new <see cref="T:Blox_Bros_Mm_Api.Models.Server"/>
+            </summary>
+        </member>
         <member name="M:Blox_Bros_Mm_Api.Models.Server.#ctor(System.String,System.Int32,System.String)">
             <summary>
             Instantiates a new <see cref="T:Blox_Bros_Mm_Api.Models.Server"/> with the given parameters
@@ -151,6 +208,13 @@
             <summary>
             Disposes the <see cref="T:Blox_Bros_Mm_Api.Models.Server"/> and removes it from the <see cref="T:Blox_Bros_Mm_Api.Models.Server"/> list
             </summary>
+        </member>
+        <member name="M:Blox_Bros_Mm_Api.Models.Server.Exists(System.String)">
+            <summary>
+            Checks if a server with the given Guid exists
+            </summary>
+            <param name="pGuid"></param>
+            <returns></returns>
         </member>
         <member name="T:Blox_Bros_Mm_Api.Program">
             <summary>
